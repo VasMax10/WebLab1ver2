@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using WebLab1ver2.Models;
+using web_lab1_fandom.Models;
 
-namespace WebLab1ver2.Controllers
+namespace web_lab1_fandom.Controllers
 {
     public class HomeController : Controller
     {

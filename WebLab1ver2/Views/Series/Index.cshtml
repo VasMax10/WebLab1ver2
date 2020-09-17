@@ -1,0 +1,41 @@
+﻿@model IEnumerable<web_lab1_fandom.Models.Series>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/BookFlipCards.css" />
+
+<h1>Series </h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="row mb-4 wow fadeIn justify-content-center">
+    @foreach (var item in Model)
+    {
+        <div class="card" style="margin-left:30px">
+            <div class="img-container">
+                <img src="@item.Poster" alt="" />
+            </div>
+            <div class="card-details">
+                <h2>@item.Name (@item.Premiere)</h2>
+                @if (item.IsEnded)
+                {
+                    <h5>Status: Ended</h5>
+                }
+                else
+                {
+                    <h5>Status: In progress</h5>
+                }
+                <p>@item.Info</p>
+                <br />
+                <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info">Cast</a>
+                <a asp-action="Characters" asp-route-id="@item.ID" class="btn btn-info">Characters</a>
+                <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    }
+</div>

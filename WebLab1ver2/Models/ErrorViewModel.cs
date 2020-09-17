@@ -1,6 +1,6 @@
 using System;
 
-namespace WebLab1ver2.Models
+namespace web_lab1_fandom.Models
 {
     public class ErrorViewModel
     {

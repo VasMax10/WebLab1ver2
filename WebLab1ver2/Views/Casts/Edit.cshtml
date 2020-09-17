@@ -1,0 +1,58 @@
+﻿@model web_lab1_fandom.Models.Casts
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<style media="screen">
+    body {
+        background-image: url( @ViewBag.backImg );
+        height: 100%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<h1>Edit casts</h1>
+
+<h4>Casts</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="ActorID" class="control-label"></label>
+                <select asp-for="ActorID" class="form-control" asp-items="ViewBag.ActorID"></select>
+                <span asp-validation-for="ActorID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CharacterID" class="control-label"></label>
+                <select asp-for="CharacterID" class="form-control" asp-items="ViewBag.CharacterID"></select>
+                <span asp-validation-for="CharacterID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstAppereance" class="control-label"></label>
+                <input asp-for="FirstAppereance" class="form-control" />
+                <span asp-validation-for="FirstAppereance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastAppereance" class="control-label"></label>
+                <input asp-for="LastAppereance" class="form-control" />
+                <span asp-validation-for="LastAppereance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-seriesID="@Model.Character.SeriesID">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,84 @@
+﻿@model web_lab1_fandom.Models.Series
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Series</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Poster" class="control-label"></label>
+                <input type="hidden" asp-for="Poster" class="form-control" />
+                <br />
+                <img id="poster" style="width: 300px; height: 300px; object-fit: contain;" />
+                <input asp-for="Poster" class="form-control" type="file" accept="image/*" onchange="loadFile(event, 'poster')" />
+                <span asp-validation-for="Poster" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Premiere" class="control-label"></label>
+                <input asp-for="Premiere" class="form-control" />
+                <span asp-validation-for="Premiere" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsEnded" /> @Html.DisplayNameFor(model => model.IsEnded)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="BackImage" class="control-label"></label>
+                <input asp-for="BackImage" class="form-control" type="hidden" />
+                <br />
+                <img id="backimg" style="width: 300px; height: 300px; object-fit: contain;" />
+                <input asp-for="BackImage" class="form-control" type="file" accept="image/*" onchange="loadFile(event, 'backimg')" />
+                <span asp-validation-for="BackImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MainColor" class="control-label"></label>
+                <input asp-for="MainColor" class="form-control" type="color" />
+                <span asp-validation-for="MainColor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondColor" class="control-label"></label>
+                <input asp-for="SecondColor" class="form-control" type="color" />
+                <span asp-validation-for="SecondColor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Info" class="control-label"></label>
+                <input asp-for="Info" class="form-control" />
+                <span asp-validation-for="Info" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script>
+    var loadFile = function (event, output) {
+        var output = document.getElementById(output);
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src) // звільнити пам'ять
+        }
+    };
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
