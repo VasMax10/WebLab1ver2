@@ -12,6 +12,14 @@
     <a asp-action="Create">Create New</a>
 </p>
 
+<style>
+    .mini-btn{
+        font-size: 20px;
+        margin: -30px 0px 0px 0px;
+        padding: 0px 10px 0px 10px;
+    }
+</style>
+
 <div class="row mb-4 wow fadeIn justify-content-center">
     @foreach (var item in Model)
     {
@@ -20,21 +28,24 @@
                 <img src="@item.Poster" alt="" />
             </div>
             <div class="card-details">
-                <h2>@item.Name (@item.Premiere)</h2>
+                <div style="text-align:end">
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary mini-btn">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger mini-btn" style="margin-right:-15px"><!--&#10006;-->Delete</a>
+                </div>
+                
+                <h2 style="margin-top:-30px">@item.Name (@item.Premiere)</h2>
                 @if (item.IsEnded)
                 {
-                    <h5>Status: Ended</h5>
-                }
-                else
-                {
-                    <h5>Status: In progress</h5>
-                }
+            <h5>Status: Ended</h5> }
+        else
+        {
+            <h5>Status: In progress</h5>}
                 <p>@item.Info</p>
                 <br />
-                <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info">Cast</a>
-                <a asp-action="Characters" asp-route-id="@item.ID" class="btn btn-info">Characters</a>
-                <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary">Edit</a>
-                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+                <div style="text-align: center">
+                    <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info" style="width:105px">Cast</a>
+                    <a asp-action="Characters" asp-route-id="@item.ID" class="btn btn-info" style="width:105px">Characters</a>
+                </div>
             </div>
         </div>
     }
