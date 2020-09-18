@@ -27,64 +27,37 @@
 <h1>Characters of "@ViewBag.SeriesName"</h1>
 
 <p>
-    <a asp-action="Create" asp-route-seriesID="@ViewBag.SeriesID">Create New</a>
+    <a asp-action="Create" class="btn btn-warning ">Create New</a>
 </p>
 <p>
-    <a asp-action="Index" asp-controller="Casts" asp-route-seriesID="@ViewBag.SeriesID">To Cast</a>
+    <a asp-action="Index" asp-controller="Casts" asp-route-seriesID="@ViewBag.SeriesID" class="btn btn-primary ">To Cast</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Birthyear)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Photo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Info)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gender)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Birthyear)
-                </td>
-                <td>
-                    <!--Html.DisplayFor(modelItem => item.Photo)-->
-                    <img src="@item.Photo" width="300" alt="" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Info)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID"><i class="material-icons">&#xE872;</i></a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+<div class="row mb-4 wow fadeIn justify-content-center">
+    @foreach (var item in Model)
+    {
+        <div class="flip-card card mb-3" style="display: inline-block; margin:10px">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img class="card-img-top" src="@item.Photo" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                    </div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="card-body" style="padding-top:0px">
+                        <h4 class="card-title" style="margin-bottom:0px"> @item.Name</h4>
+                        <h5>Gender: @item.Gender</h5>
+                        <h5>Birthyear: @item.Birthyear</h5>
+                        <h5>Status: @item.Status</h5>
+                        <h5>Information: @item.Info</h5>
+                        <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info">Info</a>
+                        <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.ID" title="Delete" data-toggle="tooltip" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

@@ -121,9 +121,7 @@
     -moz-animation: AnimationName 3s ease infinite;
     animation: AnimationName 3s ease infinite;
     border: medium none;
-    background: &#xE872;
-    
-
+    height:initial;
 }
 .btn-light{
     background: #f2f2f2;

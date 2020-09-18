@@ -19,10 +19,10 @@
 <h1>Cast of "@ViewBag.SeriesName"</h1>
 
 <p>
-    <a asp-action="Create" asp-route-seriesID="@ViewBag.SeriesID">Create New</a>
+    <a asp-action="Create" class="btn btn-warning ">Create New</a>
 </p>
 <p>
-    <a asp-action="Index" asp-controller="Characters" asp-route-seriesID="@ViewBag.SeriesID">To Characters</a>
+    <a asp-action="Index" asp-controller="Characters" asp-route-seriesID="@ViewBag.SeriesID" class="btn btn-primary ">To Characters</a>
 </p>
 
 <div class="row mb-4 wow fadeIn justify-content-center">
