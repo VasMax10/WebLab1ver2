@@ -1,1 +1,126 @@
-﻿
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Casts - web_lab1_fandom</title>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="css/flipCard.css" />
+    <link rel="stylesheet" href="css/casts.css" />
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/buttons.css" />
+    <style media="screen">
+        body {
+            background-image: url(/img/mainBack.jpg);
+            background-size: cover
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="/">Fandom</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/Series/Index">Series</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/Actors/Index">Actors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/Home/Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="/casts.html">CastsAPI</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3" style="background-color:rgba(255, 255, 255, 0.8)">
+            <!--RenderBody-->
+            <h1>Index</h1>
+
+            <p>
+                <a onclick="showAddMenu()" style="cursor:pointer">Create New</a>
+            </p>
+            <div class="modal" id="addCast">
+                <div class="modal-content" style="width:50%; align-self:center">
+                    <h3>Add cast</h3>
+                    <form action="javascript:void(0);" method="POST" onsubmit="addCast()">
+                        <label style="width:130px">Character:</label>
+                        <select style="width:203px; height:30px" id="characters"></select><br />
+                        <label style="width:130px">Actor:</label>
+                        <select style="width:203px; height:30px" id="actors"></select><br />
+                        <label style="width:130px">First Appereance:</label>
+                        <input style="width:203px; height:30px" type="text" id="add-first-ap" placeholder="First Appereance (Season)" /><br />
+                        <label style="width:130px">Last Appereance:</label>
+                        <input style="width:203px; height:30px" type="text" id="add-last-ap" placeholder="Last Appereance (Season)" /><br />
+                        <input type="submit" value="Add" />
+                        <a style="cursor:pointer" onclick="closeInput()" aria-label="Close">Cancel</a>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal" id="changeCast">
+                <div class="modal-content" style="width:50%; align-self:center">
+                    <h3>Change cast</h3>
+                    <form action="javascript:void(0);" method="POST" onsubmit="changeCast()">
+                        <input type="hidden" id="change-id" />
+                        <label style="width:130px">Character:</label>
+                        <select style="width:203px; height:30px" id="characters-edit"></select><br />
+                        <label style="width:130px">Actor:</label>
+                        <select style="width:203px; height:30px" id="actors-edit"></select><br />
+                        <label style="width:130px">First Appereance:</label>
+                        <input style="width:203px; height:30px" type="text" id="change-first-ap" placeholder="First Appereance (Season)" /><br />
+                        <label style="width:130px">Last Appereance:</label>
+                        <input style="width:203px; height:30px" type="text" id="change-last-ap" placeholder="Last Appereance (Season)" /><br />
+                        <input type="submit" value="Change" />
+                        <a style="cursor:pointer" onclick="closeInput()" aria-label="Close">Cancel</a>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal" id="deleteCast">
+                <div class="modal-content" style="width:50%; align-self:center">
+                    <h3>Delete cast</h3>
+                    <form id="delete-form" action="javascript:void(0);" method="POST">
+                        <input type="hidden" id="change-id" />
+                        <input type="submit" value="Delete" />
+                        <a style="cursor:pointer" onclick="closeInput()" aria-label="Close">Cancel</a>
+                    </form>
+                </div>
+            </div>
+
+            <div id="list" class="row mb-4 wow fadeIn justify-content-center"></div>
+
+            <!--end-->
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - web_lab1_fandom - <a href="/Home/Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/site.js"></script>
+
+    <script src="js/casts.js"></script>
+    <script type="text/javascript">
+        getCasts();
+        getActors();
+        getCharacters();
+    </script>
+</body>
+</html>
