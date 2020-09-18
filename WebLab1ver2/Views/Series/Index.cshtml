@@ -31,7 +31,7 @@
             <div class="card-details">
                 <div style="text-align:end">
                     <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary mini-btn">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger mini-btn" style="margin-right:-15px"><!--&#10006;-->Delete</a>
+                    <a asp-action="Delete" asp-route-id="@item.ID" title="Delete" data-toggle="tooltip" class="btn btn-danger mini-btn" style="margin-right:-15px"><i class="material-icons">&#xE872;</i></a>
                 </div>
                 
                 <h2 style="margin-top:-30px">@item.Name (@item.Premiere)</h2>
