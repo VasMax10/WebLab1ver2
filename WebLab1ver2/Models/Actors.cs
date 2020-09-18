@@ -17,6 +17,7 @@ namespace web_lab1_fandom.Models
         [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Birthdate")]
         //[Range(1,DateTime.UtcNow)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString ="{0: yyyy-MM-dd}")]
         public DateTime Birthdate { get; set; }
         [Display(Name = "Information")]
         public string Info { get; set; }
