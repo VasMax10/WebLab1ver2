@@ -18,7 +18,7 @@ namespace web_lab1_fandom
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("AlexConnection");
+            string connection = Configuration.GetConnectionString("MaxConnection");
             services.AddDbContext<FandomContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
         }
@@ -37,6 +37,9 @@ namespace web_lab1_fandom
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseRouting();

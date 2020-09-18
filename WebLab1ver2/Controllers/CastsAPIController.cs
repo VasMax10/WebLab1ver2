@@ -11,11 +11,11 @@ namespace web_lab1_fandom.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Casts1Controller : ControllerBase
+    public class CastsAPIController : ControllerBase
     {
         private readonly FandomContext _context;
 
-        public Casts1Controller(FandomContext context)
+        public CastsAPIController(FandomContext context)
         {
             _context = context;
         }
