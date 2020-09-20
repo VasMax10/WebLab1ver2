@@ -37,6 +37,8 @@ namespace web_lab1_fandom.Controllers
                 //if (backImg != null)
                 var backImg = series.BackImage.Replace('\\', '/');
                 ViewBag.backImg = backImg;
+                ViewBag.MainColor = series.MainColor;
+                ViewBag.SecondColor = series.SecondColor;
             }
             if (seriesID == null)
             {
@@ -61,18 +63,21 @@ namespace web_lab1_fandom.Controllers
             {
                 return NotFound();
             }
-            var backImg = _context.Series.Where(s => s.ID == characters.SeriesID).FirstOrDefault().BackImage.Replace('\\', '/');
-            ViewBag.backImg = backImg;
+            var series = _context.Series.Where(s => s.ID == characters.SeriesID).FirstOrDefault();
+            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.MainColor = series.MainColor;
+            ViewBag.SecondColor = series.SecondColor;
             return View(characters);
         }
 
         // GET: Characters/Create
         public IActionResult Create(int? seriesID)
         {
-            ViewData["SeriesID"] = new SelectList(_context.Series, "ID", "Name");
-            var backImg = _context.Series.Where(s => s.ID == seriesID).FirstOrDefault().BackImage.Replace('\\', '/');
-            ViewBag.serID = seriesID;
-            ViewBag.backImg = backImg;
+            ViewData["SeriesID"] = seriesID;
+            var series = _context.Series.Where(s => s.ID == seriesID).FirstOrDefault();
+            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.MainColor = series.MainColor;
+            ViewBag.SecondColor = series.SecondColor;
             return View();
         }
 
@@ -133,8 +138,10 @@ namespace web_lab1_fandom.Controllers
                 return NotFound();
             }
             ViewData["SeriesID"] = new SelectList(_context.Series, "ID", "Name", characters.SeriesID);
-            var backImg = _context.Series.Where(s => s.ID == characters.SeriesID).FirstOrDefault().BackImage.Replace('\\', '/');
-            ViewBag.backImg = backImg;
+            var series = _context.Series.Where(s => s.ID == characters.SeriesID).FirstOrDefault();
+            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.MainColor = series.MainColor;
+            ViewBag.SecondColor = series.SecondColor;
             return View(characters);
         }
 
@@ -222,8 +229,10 @@ namespace web_lab1_fandom.Controllers
             {
                 return NotFound();
             }
-            var backImg = _context.Series.Where(s => s.ID == characters.SeriesID).FirstOrDefault().BackImage.Replace('\\', '/');
-            ViewBag.backImg = backImg;
+            var series = _context.Series.Where(s => s.ID == characters.SeriesID).FirstOrDefault();
+            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.MainColor = series.MainColor;
+            ViewBag.SecondColor = series.SecondColor;
             return View(characters);
         }
 

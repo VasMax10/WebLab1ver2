@@ -14,32 +14,28 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
-</style>
-<!--<script>
-    function Change() {
-        if ((Boolean)(@ViewBag.backImg) == false) {
-            document.body.style.backgroundImage = "url(/img/mainBack.jpg)";
-        }
+    .bg-dark{
+        background-color: @ViewBag.MainColor!important
     }
-</script>
+    .flip-card-color{
+        background-color: @(ViewBag.SecondColor);
+    }
+</style>
 
-<body onload="Change()"></body>-->
 <h1>Characters of "@ViewBag.SeriesName"</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-warning ">Create New</a>
-</p>
-<p>
+    <a asp-action="Create" class="btn btn-warning" asp-route-seriesID="@ViewBag.SeriesID">Create New</a>
     <a asp-action="Index" asp-controller="Casts" asp-route-seriesID="@ViewBag.SeriesID" class="btn btn-primary ">To Cast</a>
 </p>
 
 <div class="row mb-4 wow fadeIn justify-content-center">
     @foreach (var item in Model)
     {
-        <div class="flip-card card mb-3" style="display: inline-block; margin:10px">
+        <div class="flip-card card mb-3 flip-card-color" style="display: inline-block; margin:10px">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <img class="card-img-top" src="@item.Photo" alt="Card image cap">
+                    <img class="flip-img" src="@item.Photo" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">@item.Name</h5>
                     </div>
@@ -50,10 +46,11 @@
                         <h5>Gender: @item.Gender</h5>
                         <h5>Birthyear: @item.Birthyear</h5>
                         <h5>Status: @item.Status</h5>
-                        <h5>Information: @item.Info</h5>
-                        <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info">Info</a>
-                        <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.ID" title="Delete" data-toggle="tooltip" class="btn btn-danger">Delete</a>
+                        <p style="position:absolute; bottom:0px">
+                            <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info">Info</a>
+                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.ID" title="Delete" data-toggle="tooltip" class="btn btn-danger">Delete</a>
+                        </p>
                     </div>
                 </div>
             </div>

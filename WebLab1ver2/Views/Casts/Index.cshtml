@@ -15,35 +15,41 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+    .bg-dark{
+        background-color: @ViewBag.MainColor!important
+    }
+    .flip-card-color{
+        background-color: @(ViewBag.SecondColor);
+    }
+    
 </style>
 <h1>Cast of "@ViewBag.SeriesName"</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-warning ">Create New</a>
-</p>
-<p>
+    <a asp-action="Create" class="btn btn-warning " asp-route-seriesID="@ViewBag.SeriesID">Create New</a>
     <a asp-action="Index" asp-controller="Characters" asp-route-seriesID="@ViewBag.SeriesID" class="btn btn-primary ">To Characters</a>
 </p>
 
 <div class="row mb-4 wow fadeIn justify-content-center">
     @foreach (var item in Model)
     {
-        <div class="flip-card card mb-3" style="display: inline-block; margin:10px">
+        <div class="flip-card card mb-3 flip-card-color" style="display: inline-block; margin:10px">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <img class="card-img-top" src="@item.Actor.Photo" alt="Card image cap">
+                    <img class="flip-img" src="@item.Actor.Photo" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">@item.Actor.Name</h5>
                     </div>
                 </div>
                 <div class="flip-card-back">
-                    <img class="card-img-top flip-img" src="@item.Character.Photo" alt="Card image cap">
+                    <img class="flip-img" src="@item.Character.Photo" alt="Card image cap">
                     <div class="card-body" style="padding-top:0px">
                         <h5 class="card-title" style="margin-bottom:0px">as @item.Character.Name</h5>
                         <h6 class="card-title">Seasons (@item.FirstAppereance - @item.LastAppereance)</h6>
-                        <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info">Info</a>
-                        <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.ID" title="Delete" data-toggle="tooltip" class="btn btn-danger"><i class="material-icons">&#xE872;</i></a>
+                        <p style="position:absolute; bottom:0px; width: 90%">
+                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.ID" title="Delete" data-toggle="tooltip" class="btn btn-danger">Delete</a>
+                         </p>
                     </div>
                 </div>
             </div>

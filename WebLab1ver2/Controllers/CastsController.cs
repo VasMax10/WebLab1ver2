@@ -31,6 +31,8 @@ namespace web_lab1_fandom.Controllers
                 //if (backImg != null)
                 var backImg = series.BackImage.Replace('\\', '/');
                 ViewBag.backImg = backImg;
+                ViewBag.MainColor = series.MainColor;
+                ViewBag.SecondColor = series.SecondColor;
             }
             if (seriesID == null)
                 {
@@ -57,8 +59,10 @@ namespace web_lab1_fandom.Controllers
             {
                 return NotFound();
             }
-            var backImg = _context.Series.Where(s => s.ID == casts.Character.SeriesID).FirstOrDefault().BackImage.Replace('\\', '/');
-            ViewBag.backImg = backImg;
+            var series = _context.Series.Where(s => s.ID == casts.Character.SeriesID).FirstOrDefault();
+            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.MainColor = series.MainColor;
+            ViewBag.SecondColor = series.SecondColor;
             return View(casts);
         }
 
@@ -66,10 +70,12 @@ namespace web_lab1_fandom.Controllers
         public IActionResult Create(int? seriesID)
         {
             ViewData["ActorID"] = new SelectList(_context.Actors, "ID", "Name");
-            ViewData["CharacterID"] = new SelectList(_context.Characters, "ID", "Name");
-            var backImg = _context.Series.Where(s => s.ID == seriesID).FirstOrDefault().BackImage.Replace('\\', '/');
+            ViewData["CharacterID"] = new SelectList(_context.Characters.Where(c => c.SeriesID == seriesID), "ID", "Name");
+            var series = _context.Series.Where(s => s.ID == seriesID).FirstOrDefault();
             ViewBag.seriesID = seriesID;
-            ViewBag.backImg = backImg;
+            ViewBag.backImg = series.BackImage.Replace('\\', '/'); ;
+            ViewBag.MainColor = series.MainColor;
+            ViewBag.SecondColor = series.SecondColor;
             return View();
         }
 
@@ -89,7 +95,7 @@ namespace web_lab1_fandom.Controllers
                 //return RedirectToAction(nameof(Index));
             }
             ViewData["ActorID"] = new SelectList(_context.Actors, "ID", "ID", casts.ActorID);
-            ViewData["CharacterID"] = new SelectList(_context.Characters, "ID", "ID", casts.CharacterID);
+            ViewData["CharacterID"] = new SelectList(_context.Characters.Where(c => c.SeriesID == character.SeriesID), "ID", "ID", casts.CharacterID);
             return RedirectToAction("Index", "Casts", new { seriesID = character.SeriesID });
             //return View(casts);
         }
@@ -110,8 +116,10 @@ namespace web_lab1_fandom.Controllers
             ViewData["ActorID"] = new SelectList(_context.Actors, "ID", "Name", casts.ActorID);
             ViewData["CharacterID"] = new SelectList(_context.Characters, "ID", "Name", casts.CharacterID);
             var character = _context.Characters.Where(c => c.ID == casts.CharacterID).FirstOrDefault();
-            var backImg = _context.Series.Where(s => s.ID == character.SeriesID).FirstOrDefault().BackImage.Replace('\\', '/');
-            ViewBag.backImg = backImg;
+            var series = _context.Series.Where(s => s.ID == casts.Character.SeriesID).FirstOrDefault();
+            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.MainColor = series.MainColor;
+            ViewBag.SecondColor = series.SecondColor;
             return View(casts);
         }
 
@@ -171,8 +179,10 @@ namespace web_lab1_fandom.Controllers
                 return NotFound();
             }
             var character = _context.Characters.Where(c => c.ID == casts.CharacterID).FirstOrDefault();
-            var backImg = _context.Series.Where(s => s.ID == character.SeriesID).FirstOrDefault().BackImage.Replace('\\', '/');
-            ViewBag.backImg = backImg;
+            var series = _context.Series.Where(s => s.ID == casts.Character.SeriesID).FirstOrDefault();
+            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.MainColor = series.MainColor;
+            ViewBag.SecondColor = series.SecondColor;
             return View(casts);
         }
 

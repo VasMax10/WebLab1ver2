@@ -22,7 +22,7 @@
                 <label asp-for="Poster" class="control-label"></label>
                 <input type="hidden" asp-for="Poster" class="form-control" />
                 <br />
-                <img id="poster" style="width: 300px; height: 300px; object-fit: contain;" />
+                <img id="poster" style="width: 300px; height: 300px; object-fit: contain;" src="@Model.Poster"/>
                 <input asp-for="Poster" class="form-control" type="file" accept="image/*" onchange="loadFile(event, 'poster')" />
                 <span asp-validation-for="Poster" class="text-danger"></span>
             </div>
@@ -40,7 +40,7 @@
                 <label asp-for="BackImage" class="control-label"></label>
                 <input asp-for="BackImage" class="form-control" type="hidden" />
                 <br />
-                <img id="backimg" style="width: 300px; height: 300px; object-fit: contain;" />
+                <img id="backimg" style="width: 300px; height: 300px; object-fit: contain;" src="@Model.BackImage"/>
                 <input asp-for="BackImage" class="form-control" type="file" accept="image/*" onchange="loadFile(event, 'backimg')" />
                 <span asp-validation-for="BackImage" class="text-danger"></span>
             </div>

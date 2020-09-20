@@ -15,11 +15,13 @@
     {
     <div class="flip-card card mb-3" style="display: inline-block; margin:10px">
         <img class="card-img-top flip-img" width="2" src="@item.Photo" alt="Card image cap">
-        <div class="card-body" style="text-align:center">
-            <h5 class="card-title" style="margin-bottom:0px">@item.Name</h5>
-            <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info">Info</a>
-            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary">Edit</a>
-            <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+        <div class="card-body" style="text-align:center; padding-top:15px">
+            <h5 class="card-title" style="margin-bottom:0px; padding-bottom: 5px">@item.Name</h5>
+            <p style="position:absolute; bottom:0px">
+                <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info">Info</a>
+                <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+            </p>
         </div>
     </div>
     }
