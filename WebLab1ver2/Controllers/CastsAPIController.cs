@@ -25,7 +25,8 @@ namespace web_lab1_fandom.Controllers
             public string ActorPhoto { get; set; }
             public string CharacterName { get; set; }
             public string CharacterPhoto { get; set; }
-            public UserCast(Casts casts, string aName, string aPhoto, string cName, string cPhoto)
+            public string SeriesName { get; set; }
+            public UserCast(Casts casts, string aName, string aPhoto, string cName, string cPhoto, string sName)
             {
                 ID = casts.ID;
                 ActorID = casts.ActorID;
@@ -38,6 +39,7 @@ namespace web_lab1_fandom.Controllers
                 ActorPhoto = aPhoto;
                 CharacterName = cName;
                 CharacterPhoto = cPhoto;
+                SeriesName = sName;
             }
         }
 
@@ -46,7 +48,7 @@ namespace web_lab1_fandom.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserCast>>> GetCasts(string seriesName)
         {
-            var list = _context.Casts.Select(c => new UserCast(c, c.Actor.Name, c.Actor.Photo, c.Character.Name, c.Character.Photo));
+            var list = _context.Casts.Select(c => new UserCast(c, c.Actor.Name, c.Actor.Photo, c.Character.Name, c.Character.Photo, c.Character.Series.Name));
             if (seriesName != null)
             {
 

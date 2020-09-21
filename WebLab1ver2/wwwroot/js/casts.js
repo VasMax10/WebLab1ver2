@@ -34,13 +34,14 @@ function _displayCasts(data) {
         list.innerHTML += '<div class="flip-card card mb-3" style="display: inline-block; margin:10px">' +
             '<div class="flip-card-inner">' +
             '<div class="flip-card-front">' +
-        '<img class="card-img-top" src="' + cast.actorPhoto + '" alt="Card image cap">' +
+        '<img class="flip-img" src="' + cast.actorPhoto + '" alt="Card image cap">' +
         '<div class="card-body">' +
         '<h5 class="card-title">' + cast.actorName + '</h5>' +
+        '<h5 class="card-title">in "' + cast.seriesName + '"</h5>' +
         '</div>' +
         '</div>' +
         '<div class="flip-card-back">' +
-            '<img class="card-img-top flip-img" src="' + cast.characterPhoto + '" alt="Card image cap">'  +
+            '<img class="flip-img" src="' + cast.characterPhoto + '" alt="Card image cap">'  +
         '<div class="card-body" style="padding-top:0px">' +
             '<h5 class="card-title" style="margin-bottom:0px">as ' + cast.characterName + '</h5>' +
             '<h6 class="card-title">Seasons (' + cast.firstAppereance + ' - ' + cast.lastAppereance + ')</h6>' +
