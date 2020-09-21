@@ -1,6 +1,7 @@
 ﻿@model web_lab1_fandom.Models.Characters
 
 @{ ViewData["Title"] = "Details"; }
+
 <style media="screen">
     body {
         background-image: url( @ViewBag.backImg );
@@ -13,14 +14,17 @@
     .bg-dark{
         background-color: @ViewBag.MainColor!important
     }
+    .card-color{
+        background-color: @(ViewBag.SecondColor)!important;
+    }
 </style>
 
-<div>
-    <a asp-action="Index" asp-route-seriesID="@Model.SeriesID" class="btn-link">Back to List</a>
-    <a asp-action="Edit" asp-route-id="@Model.ID"  class="btn-block">Edit</a>
+<div style="padding:10px; padding-left:0px">
+    <a asp-action="Index" asp-route-seriesID="@Model.SeriesID" class="btn btn-warning">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.ID"  class="btn btn-primary">Edit</a>
 </div>
 
-<div style="float:left; width:300px; background-color: #AAA; margin-right:20px">
+<div style="float:left; width:300px; background-color: #AAA; margin-right:20px" class="card-color">
     <h4 style="text-align:center">@Html.DisplayFor(model => model.Name)</h4>
     <img src="@Model.Photo" width="300" height="400" style="object-fit: contain" />
     <h5 style="text-align:center">Gender: @Model.Gender</h5>

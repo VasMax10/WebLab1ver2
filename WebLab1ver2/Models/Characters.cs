@@ -17,7 +17,7 @@ namespace web_lab1_fandom.Models
         public string Gender { get; set; }
         [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Birthyear")]
-        [Range(1900,2020, ErrorMessage ="Year must be valid")]
+        [Range(0,10000, ErrorMessage ="Year must be valid")]
         public int Birthyear { get; set; }
         //[Required(ErrorMessage = "This field is required")]
         [Display(Name = "Photo")]

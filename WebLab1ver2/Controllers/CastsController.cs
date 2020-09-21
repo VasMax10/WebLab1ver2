@@ -114,9 +114,9 @@ namespace web_lab1_fandom.Controllers
                 return NotFound();
             }
             ViewData["ActorID"] = new SelectList(_context.Actors, "ID", "Name", casts.ActorID);
-            ViewData["CharacterID"] = new SelectList(_context.Characters, "ID", "Name", casts.CharacterID);
             var character = _context.Characters.Where(c => c.ID == casts.CharacterID).FirstOrDefault();
             var series = _context.Series.Where(s => s.ID == casts.Character.SeriesID).FirstOrDefault();
+            ViewData["CharacterID"] = new SelectList(_context.Characters.Where(c => c.SeriesID == series.ID), "ID", "Name");
             ViewBag.backImg = series.BackImage.Replace('\\', '/');
             ViewBag.MainColor = series.MainColor;
             ViewBag.SecondColor = series.SecondColor;
