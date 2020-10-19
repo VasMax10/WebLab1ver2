@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using web_lab1_fandom.Models;
+using WebApp.Models;
 
-namespace web_lab1_fandom.Controllers
+namespace WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

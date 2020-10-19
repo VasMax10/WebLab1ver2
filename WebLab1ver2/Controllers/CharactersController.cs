@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using web_lab1_fandom.Models;
+using WebApp.Models;
 
-namespace web_lab1_fandom.Controllers
+namespace WebApp.Controllers
 {
     public class CharactersController : Controller
     {
@@ -34,9 +34,7 @@ namespace web_lab1_fandom.Controllers
             if (series != null)
             {
                 ViewBag.SeriesName = series.Name;
-                //if (backImg != null)
-                var backImg = series.BackImage.Replace('\\', '/');
-                ViewBag.backImg = backImg;
+                ViewBag.backImg = series.BackImage;
                 ViewBag.MainColor = series.MainColor;
                 ViewBag.SecondColor = series.SecondColor;
             }
@@ -64,7 +62,7 @@ namespace web_lab1_fandom.Controllers
                 return NotFound();
             }
             var series = _context.Series.Where(s => s.ID == characters.SeriesID).FirstOrDefault();
-            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.backImg = series.BackImage;
             ViewBag.MainColor = series.MainColor;
             ViewBag.SecondColor = series.SecondColor;
             return View(characters);
@@ -75,7 +73,7 @@ namespace web_lab1_fandom.Controllers
         {
             ViewData["SeriesID"] = seriesID;
             var series = _context.Series.Where(s => s.ID == seriesID).FirstOrDefault();
-            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.backImg = series.BackImage;
             ViewBag.MainColor = series.MainColor;
             ViewBag.SecondColor = series.SecondColor;
             return View();
@@ -91,7 +89,7 @@ namespace web_lab1_fandom.Controllers
         {
             if (Photo != null && Photo.Length > 0)
             {
-                var imagePath = @"\Upload\Images\Characters\";
+                var imagePath = @"/Upload/Images/Characters/";
                 var uploadPath = _env.WebRootPath + imagePath;
 
                 if (!Directory.Exists(uploadPath))
@@ -103,7 +101,7 @@ namespace web_lab1_fandom.Controllers
 
                 string fullPath = uploadPath + filename;
 
-                imagePath = imagePath + @"\";
+                imagePath = imagePath + @"/";
 
                 var filePath = Path.Combine(imagePath, filename);
                 using (var fileStream = new FileStream(fullPath, FileMode.Create))
@@ -139,7 +137,7 @@ namespace web_lab1_fandom.Controllers
             }
             ViewData["SeriesID"] = new SelectList(_context.Series, "ID", "Name", characters.SeriesID);
             var series = _context.Series.Where(s => s.ID == characters.SeriesID).FirstOrDefault();
-            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.backImg = series.BackImage;
             ViewBag.MainColor = series.MainColor;
             ViewBag.SecondColor = series.SecondColor;
             return View(characters);
@@ -167,7 +165,7 @@ namespace web_lab1_fandom.Controllers
                         System.IO.File.Delete(PhotoPath);
                     }
                 }
-                var imagePath = @"\Upload\Images\Characters\";
+                var imagePath = @"/Upload/Images/Characters/";
                 var uploadPath = _env.WebRootPath + imagePath;
 
                 if (!Directory.Exists(uploadPath))
@@ -179,7 +177,7 @@ namespace web_lab1_fandom.Controllers
 
                 string fullPath = uploadPath + filename;
 
-                imagePath = imagePath + @"\";
+                imagePath = imagePath + @"/";
 
                 var filePath = Path.Combine(imagePath, filename);
                 using (var fileStream = new FileStream(fullPath, FileMode.Create))
@@ -230,7 +228,7 @@ namespace web_lab1_fandom.Controllers
                 return NotFound();
             }
             var series = _context.Series.Where(s => s.ID == characters.SeriesID).FirstOrDefault();
-            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.backImg = series.BackImage;
             ViewBag.MainColor = series.MainColor;
             ViewBag.SecondColor = series.SecondColor;
             return View(characters);

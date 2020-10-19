@@ -6,7 +6,10 @@ a.navbar-brand {
   text-align: center;
   word-break: break-all;
 }
-
+@font-face{
+  font-family: 'Site Main Font';
+  src: url(./main.ttf);
+}
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
@@ -61,6 +64,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
+    font-family: Site Main Font;
     /*background: #000;*/
 }
 .footer {

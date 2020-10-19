@@ -1,4 +1,4 @@
-﻿@model IEnumerable<web_lab1_fandom.Models.Actors>
+﻿@model IEnumerable<WebApp.Models.Actors>
 
 @{
     ViewData["Title"] = "Index";
@@ -27,3 +27,43 @@
     }
 
 </div>
+
+@* @model IEnumerable<web_lab1_fandom.Models.Actors>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="ui-widget">
+    <label for="tags">Tags: </label>
+    <input type="text" ID="txtLanguages" />
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#txtLanguages").autocomplete({
+            source: function (request, response) {
+                   $.ajax({
+                       url: '/Actors/Languages',
+                        type: 'GET',
+                        cache: false,
+                        data: request,
+                        dataType: 'json',
+                    success: function (data) {
+                    response($.map(data, function (item) {
+                        return {
+                            label: item,
+                            value: item + ""
+                        }
+                    }))
+                   }
+               });
+           },
+           minLength: 2,
+           select: function (event, ui) {
+               alert('you have selected ' + ui.item.label + ' ID: ' + ui.item.value);
+               $('#txtSearch').val(ui.item.label);
+               return false;
+           }
+        });
+    });
+</script> *@

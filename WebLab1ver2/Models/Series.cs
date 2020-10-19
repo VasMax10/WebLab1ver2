@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace web_lab1_fandom.Models
+namespace WebApp.Models
 {
     public class Series
     {

@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using web_lab1_fandom.Models;
+using WebApp.Models;
 
-namespace web_lab1_fandom.Controllers
+namespace WebApp.Controllers
 {
     public class CastsController : Controller
     {
@@ -18,7 +18,7 @@ namespace web_lab1_fandom.Controllers
         {
             _context = context;
         }
-
+        
         // GET: Casts
         public async Task<IActionResult> Index(int? seriesID)
         {
@@ -29,8 +29,7 @@ namespace web_lab1_fandom.Controllers
             {
                 ViewBag.SeriesName = series.Name;
                 //if (backImg != null)
-                var backImg = series.BackImage.Replace('\\', '/');
-                ViewBag.backImg = backImg;
+                ViewBag.backImg = series.BackImage;
                 ViewBag.MainColor = series.MainColor;
                 ViewBag.SecondColor = series.SecondColor;
             }
@@ -60,7 +59,7 @@ namespace web_lab1_fandom.Controllers
                 return NotFound();
             }
             var series = _context.Series.Where(s => s.ID == casts.Character.SeriesID).FirstOrDefault();
-            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.backImg = series.BackImage;
             ViewBag.MainColor = series.MainColor;
             ViewBag.SecondColor = series.SecondColor;
             return View(casts);
@@ -72,8 +71,8 @@ namespace web_lab1_fandom.Controllers
             ViewData["ActorID"] = new SelectList(_context.Actors, "ID", "Name");
             ViewData["CharacterID"] = new SelectList(_context.Characters.Where(c => c.SeriesID == seriesID), "ID", "Name");
             var series = _context.Series.Where(s => s.ID == seriesID).FirstOrDefault();
+            ViewBag.backImg = series.BackImage;
             ViewBag.seriesID = seriesID;
-            ViewBag.backImg = series.BackImage.Replace('\\', '/'); ;
             ViewBag.MainColor = series.MainColor;
             ViewBag.SecondColor = series.SecondColor;
             return View();
@@ -117,7 +116,7 @@ namespace web_lab1_fandom.Controllers
             var character = _context.Characters.Where(c => c.ID == casts.CharacterID).FirstOrDefault();
             var series = _context.Series.Where(s => s.ID == casts.Character.SeriesID).FirstOrDefault();
             ViewData["CharacterID"] = new SelectList(_context.Characters.Where(c => c.SeriesID == series.ID), "ID", "Name");
-            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.backImg = series.BackImage;
             ViewBag.MainColor = series.MainColor;
             ViewBag.SecondColor = series.SecondColor;
             return View(casts);
@@ -180,7 +179,7 @@ namespace web_lab1_fandom.Controllers
             }
             var character = _context.Characters.Where(c => c.ID == casts.CharacterID).FirstOrDefault();
             var series = _context.Series.Where(s => s.ID == casts.Character.SeriesID).FirstOrDefault();
-            ViewBag.backImg = series.BackImage.Replace('\\', '/');
+            ViewBag.backImg = series.BackImage;
             ViewBag.MainColor = series.MainColor;
             ViewBag.SecondColor = series.SecondColor;
             return View(casts);

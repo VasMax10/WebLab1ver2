@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using web_lab1_fandom.Models;
+using WebApp.Models;
 
 namespace web_lab1_fandom.Controllers
 {
@@ -85,7 +85,7 @@ namespace web_lab1_fandom.Controllers
         {
             if (Poster != null && Poster.Length > 0)
             {
-                var imagePath = @"\Upload\Images\Series\Posters\";
+                var imagePath = @"/Upload/Images/Series/Posters/";
                 var uploadPath = _env.WebRootPath + imagePath;
 
                 if (!Directory.Exists(uploadPath))
@@ -97,7 +97,7 @@ namespace web_lab1_fandom.Controllers
 
                 string fullPath = uploadPath + filename;
 
-                imagePath = imagePath + @"\";
+                imagePath = imagePath + @"/";
 
                 var filePath = Path.Combine(imagePath, filename);
                 using (var fileStream = new FileStream(fullPath, FileMode.Create))
@@ -108,7 +108,7 @@ namespace web_lab1_fandom.Controllers
             }
             if (BackImage != null && BackImage.Length > 0)
             {
-                var imagePath = @"\Upload\Images\Series\BackImages\";
+                var imagePath = @"/Upload/Images/Series/BackImages/";
                 var uploadPath = _env.WebRootPath + imagePath;
 
                 if (!Directory.Exists(uploadPath))
@@ -120,7 +120,7 @@ namespace web_lab1_fandom.Controllers
 
                 string fullPath = uploadPath + filename;
 
-                imagePath = imagePath + @"\";
+                imagePath = imagePath + @"/";
 
                 var filePath = Path.Combine(imagePath, filename);
                 using (var fileStream = new FileStream(fullPath, FileMode.Create))
@@ -177,7 +177,7 @@ namespace web_lab1_fandom.Controllers
                         System.IO.File.Delete(PhotoPath);
                     }
                 }
-                var imagePath = @"\Upload\Images\Series\Posters\";
+                var imagePath = @"/Upload/Images/Series/Posters/";
                 var uploadPath = _env.WebRootPath + imagePath;
 
                 if (!Directory.Exists(uploadPath))
@@ -189,7 +189,7 @@ namespace web_lab1_fandom.Controllers
 
                 string fullPath = uploadPath + filename;
 
-                imagePath = imagePath + @"\";
+                imagePath = imagePath + @"/";
 
                 var filePath = Path.Combine(imagePath, filename);
                 using (var fileStream = new FileStream(fullPath, FileMode.Create))
@@ -208,7 +208,7 @@ namespace web_lab1_fandom.Controllers
                         System.IO.File.Delete(PhotoPath);
                     }
                 }
-                var imagePath = @"\Upload\Images\Series\BackImages\";
+                var imagePath = @"/Upload/Images/Series/BackImages/";
                 var uploadPath = _env.WebRootPath + imagePath;
 
                 if (!Directory.Exists(uploadPath))
@@ -220,7 +220,7 @@ namespace web_lab1_fandom.Controllers
 
                 string fullPath = uploadPath + filename;
 
-                imagePath = imagePath + @"\";
+                imagePath = imagePath + @"/";
 
                 var filePath = Path.Combine(imagePath, filename);
                 using (var fileStream = new FileStream(fullPath, FileMode.Create))

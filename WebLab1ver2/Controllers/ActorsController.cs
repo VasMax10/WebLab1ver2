@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using web_lab1_fandom.Models;
+using WebApp.Models;
+ 
 
-namespace web_lab1_fandom.Controllers
+namespace WebApp.Controllers
 {
     public class ActorsController : Controller
     {
@@ -65,7 +66,7 @@ namespace web_lab1_fandom.Controllers
         {
             if (Photo != null && Photo.Length > 0)
             {
-                var imagePath = @"\Upload\Images\Actors\";
+                var imagePath = @"/Upload/Images/Actors/";
                 var uploadPath = _env.WebRootPath + imagePath;
 
                 if (!Directory.Exists(uploadPath))
@@ -77,7 +78,7 @@ namespace web_lab1_fandom.Controllers
                 
                 string fullPath = uploadPath + filename;
 
-                imagePath = imagePath + @"\";
+                imagePath = imagePath + @"/";
 
                 var filePath = Path.Combine(imagePath, filename);
                 using (var fileStream = new FileStream(fullPath, FileMode.Create))
@@ -133,7 +134,7 @@ namespace web_lab1_fandom.Controllers
                         System.IO.File.Delete(PhotoPath);
                     }
                 }
-                var imagePath = @"\Upload\Images\Actors\";
+                var imagePath = @"/Upload/Images/Actors/";
                 var uploadPath = _env.WebRootPath + imagePath;
 
                 if (!Directory.Exists(uploadPath))
@@ -145,7 +146,7 @@ namespace web_lab1_fandom.Controllers
 
                 string fullPath = uploadPath + filename;
 
-                imagePath = imagePath + @"\";
+                imagePath = imagePath + @"/";
 
                 var filePath = Path.Combine(imagePath, filename);
                 using (var fileStream = new FileStream(fullPath, FileMode.Create))
