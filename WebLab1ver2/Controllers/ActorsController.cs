@@ -62,7 +62,7 @@ namespace WebApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Obsolete]
-        public async Task<IActionResult> Create(IFormFile Photo, [Bind("ID,Name,Birthdate,Info")] Actors actors)
+        public async Task<IActionResult> Create(IFormFile Photo, [Bind("ID,Name,Birthdate,Info,Lat,Lng")] Actors actors)
         {
             if (Photo != null && Photo.Length > 0)
             {
@@ -118,7 +118,7 @@ namespace WebApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Obsolete]
-        public async Task<IActionResult> Edit(int id, IFormFile Photo, [Bind("ID,Name,Photo,Birthdate,Info")] Actors actors)
+        public async Task<IActionResult> Edit(int id, IFormFile Photo, [Bind("ID,Name,Photo,Birthdate,Info,Lat,Lng")] Actors actors)
         {
             if (id != actors.ID)
             {
@@ -221,6 +221,11 @@ namespace WebApp.Controllers
         private bool ActorsExists(int id)
         {
             return _context.Actors.Any(e => e.ID == id);
+        }
+        
+        public async Task<IActionResult> Maps()
+        {
+            return View(await _context.Actors.ToListAsync());
         }
     }
 }

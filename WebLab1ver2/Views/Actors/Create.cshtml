@@ -3,13 +3,17 @@
 @{
     ViewData["Title"] = "Create";
 }
-
+<head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+</head>
 <h1>Create</h1>
 
 <h4>Actors</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4" >
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -35,6 +39,16 @@
                 <span asp-validation-for="Info" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <input asp-for="Lat" class="form-control" type="hidden"/>
+                <span asp-validation-for="Lat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Lng" class="form-control" type="hidden"/>
+                <span asp-validation-for="Lng" class="text-danger"></span>
+            </div>
+            <label>Place of Birth</label>
+                <div id='map' style='width: auto; height: 300px;'></div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -54,6 +68,29 @@
         }
     };
 </script>
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoidmFzbWF4MTAiLCJhIjoiY2tnZ2h5ZjA1MDFraDMwcGdqYm9yd24yaiJ9.ZA0kNsYy6-IW52ENS7_PsQ';
+    var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [32.0334473,49.6684155], // starting position
+        zoom: 3 // starting zoom
+    });
+    var marker = new mapboxgl.Marker()
+        .setLngLat([32.0334473,49.6684155])
+        .addTo(map); 
+ 
+    map.on('click', function (e) {
+        marker.setLngLat(e.lngLat.wrap());
+        document.getElementById('Lng').value = e.lngLat.wrap().lng;
+        document.getElementById('Lat').value = e.lngLat.wrap().lat;
+    });
+
+    map.addControl(new mapboxgl.NavigationControl());
+
+    </script>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

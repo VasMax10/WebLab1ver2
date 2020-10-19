@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "install",
+			"path": "WebLab1ver2/wwwroot/jquery-ui-1.12.1/",
+			"problemMatcher": [],
+			"label": "npm: install - WebLab1ver2/wwwroot/jquery-ui-1.12.1",
+			"detail": "install dependencies from package"
+		}
+	]
+}

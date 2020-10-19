@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApp.Models.Actors>
+@{
+    ViewData["Title"] = "Maps Page";
+}
+
+<head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+</head>
+
+<div class="text-center">
+    <h1 class="display-4">Map</h1>
+</div>
+<div style='width: auto; height: 75vh;'>
+    <div id='map' style='width: auto; height: 100%;'>
+    </div>
+</div>
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoidmFzbWF4MTAiLCJhIjoiY2tnZ2h5ZjA1MDFraDMwcGdqYm9yd24yaiJ9.ZA0kNsYy6-IW52ENS7_PsQ';
+    var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v11',
+        zoom: 1 // starting zoom
+    });
+    //var marker = new mapboxgl.Marker()
+    //    .setLngLat([Model.Lng,Model.Lat])
+    //   .addTo(map); 
+
+    map.addControl(new mapboxgl.NavigationControl());
+    
+</script>
+@foreach (var item in Model)
+        {
+            if ((String.IsNullOrEmpty(item.Lat)) || (String.IsNullOrEmpty(item.Lng)))
+                continue;
+            <script>
+                var popup = new mapboxgl.Popup({ offset: 25 }).setText(
+                '@item.Name'
+                    );
+                var marker = new mapboxgl.Marker({color: 'red'})
+                    .setLngLat([@item.Lng,@item.Lat])
+                    .setPopup(popup)
+                    .addTo(map); 
+            </script>
+
+            
+        }

@@ -21,6 +21,9 @@ namespace WebApp.Models
         public DateTime Birthdate { get; set; }
         [Display(Name = "Information")]
         public string Info { get; set; }
+        public string Lat{get;set;}
+        public string Lng {get; set;}
         public virtual ICollection<Casts> Cast { get; set; }
+
     }
 }
