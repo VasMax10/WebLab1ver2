@@ -4,11 +4,56 @@
     ViewData["Title"] = "Index";
 }
 <link rel="stylesheet" href="~/css/flipCard.css" />
+<link href="~/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+<link href="~/jquery-ui-1.12.1/jquery-ui.structure.css" rel="stylesheet">
+<link href="~/jquery-ui-1.12.1/jquery-ui.theme.css" rel="stylesheet">
+<style>
+  .custom-combobox {
+    position: relative;
+    display: inline-block;
+  }
+  .custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+  }
+  .custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+  }
+  </style>
+
 <h1>Actors</h1>
 
 <p>
     <a asp-action="Create" class="btn btn-warning ">Create New</a>
 </p>
+
+<input id="input" list="actors"/>
+
+
+<datalist id="actors">
+
+</datalist>
+
+<script type="text/jscript">  
+    window.onload = function getList()
+    {
+        var url = "/Actors/Search";  
+        var actors = document.getElementById('actors');
+        $.get(url, null, function (data) {  
+            data.forEach(actor =>
+            {
+                var option = document.createElement('option');
+                option.appendChild(document.createTextNode(actor));
+                actors.appendChild(option);
+            }); 
+        });
+        
+    }
+</script>  
 
 <div class="row mb-4 wow fadeIn justify-content-center">
     @foreach (var item in Model)
@@ -27,43 +72,3 @@
     }
 
 </div>
-
-@* @model IEnumerable<web_lab1_fandom.Models.Actors>
-@{
-    ViewData["Title"] = "Index";
-}
-
-<div class="ui-widget">
-    <label for="tags">Tags: </label>
-    <input type="text" ID="txtLanguages" />
-</div>
-
-<script>
-    $(document).ready(function () {
-        $("#txtLanguages").autocomplete({
-            source: function (request, response) {
-                   $.ajax({
-                       url: '/Actors/Languages',
-                        type: 'GET',
-                        cache: false,
-                        data: request,
-                        dataType: 'json',
-                    success: function (data) {
-                    response($.map(data, function (item) {
-                        return {
-                            label: item,
-                            value: item + ""
-                        }
-                    }))
-                   }
-               });
-           },
-           minLength: 2,
-           select: function (event, ui) {
-               alert('you have selected ' + ui.item.label + ' ID: ' + ui.item.value);
-               $('#txtSearch').val(ui.item.label);
-               return false;
-           }
-        });
-    });
-</script> *@

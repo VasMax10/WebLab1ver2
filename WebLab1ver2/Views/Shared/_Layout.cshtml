@@ -7,8 +7,15 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/buttons.css" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-
+    
+    @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <!--SELECT 2 start-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css"/>
+    @* <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script> *@
+    <!--SELECT 2 end-->
     <style media="screen">
         body {
             background-image: url(/img/mainBack.jpg);
@@ -45,6 +52,9 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Actors" asp-action="Maps">Maps</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Charts">Charts</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-danger" href="/casts.html">CastsAPI</a>
                         </li>
                     </ul>
@@ -67,6 +77,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

@@ -1,0 +1,61 @@
+﻿@{
+    Layout = null;
+}
+ 
+<!DOCTYPE html>
+ 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <title>Stacked Bar Chart</title>
+</head>
+<body>
+    <div id="chartContainer"></div>
+ 
+    <script type="text/javascript">
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "Appearance in seasons"
+                },
+                animationEnabled: true,
+                axisY2: {
+                    valueFormatString: "Season 0",
+                },
+                toolTip: {
+                    shared: true
+                },
+                legend: {
+                    verticalAlign: "top",
+                    horizontalAlign: "center"
+                },
+ 
+                data: [
+                {
+                    type: "stackedBar",
+                    showInLegend: false,
+                    name: "End",
+                    axisYType: "secondary",
+                    color: "#F0E6A7",
+                    dataPoints: [
+                        { y: 5, label: "India" },
+                        { y: 1, label: "US" },
+                        { y: 1, label: "Germany" },
+                        { y: 2, label: "Brazil" },
+                        { y: 2, label: "China" },
+                        { y: 2, label: "Australia" },
+                        { y: 1, label: "France" },
+                        { y: 1, label: "Italy" },
+                        { y: 2, label: "Singapore" },
+                        { y: 2, label: "Switzerland" },
+                        { y: 3, label: "Japan" }
+                    ],
+                }
+                ]
+            });
+            chart.render();
+        };
+    </script>
+</body>
+</html>		

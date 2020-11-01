@@ -18,6 +18,11 @@ namespace WebApp.Controllers
         {
             _context = context;
         }
+        public IActionResult Charts(int? seriesID)
+        {
+            ViewBag.SeriesID = seriesID;
+            return View();
+        }
         
         // GET: Casts
         public async Task<IActionResult> Index(int? seriesID)
@@ -112,13 +117,14 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["ActorID"] = new SelectList(_context.Actors, "ID", "Name", casts.ActorID);
+            ViewData["ActorID"] = new SelectList(_context.Actors.Where(a => a.ID == casts.ActorID), "ID", "Name", casts.ActorID);
             var character = _context.Characters.Where(c => c.ID == casts.CharacterID).FirstOrDefault();
             var series = _context.Series.Where(s => s.ID == casts.Character.SeriesID).FirstOrDefault();
             ViewData["CharacterID"] = new SelectList(_context.Characters.Where(c => c.SeriesID == series.ID), "ID", "Name");
             ViewBag.backImg = series.BackImage;
             ViewBag.MainColor = series.MainColor;
             ViewBag.SecondColor = series.SecondColor;
+            ViewBag.seriesID = series.ID;
             return View(casts);
         }
 

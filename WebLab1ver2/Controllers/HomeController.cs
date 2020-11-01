@@ -22,7 +22,10 @@ namespace WebApp.Controllers
         {
             return View();
         }
-
+        public ActionResult StackedBar()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

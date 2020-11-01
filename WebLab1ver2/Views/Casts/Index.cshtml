@@ -28,6 +28,7 @@
 <p>
     <a asp-action="Create" class="btn btn-warning " asp-route-seriesID="@ViewBag.SeriesID">Create New</a>
     <a asp-action="Index" asp-controller="Characters" asp-route-seriesID="@ViewBag.SeriesID" class="btn btn-primary ">To Characters</a>
+    <a asp-action="Charts" asp-route-seriesID="@ViewBag.SeriesID" class="btn btn-primary ">Show chart</a>
 </p>
 
 <div class="row mb-4 wow fadeIn justify-content-center">
@@ -57,6 +58,3 @@
     }
 
 </div>
-
-
-

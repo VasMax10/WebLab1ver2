@@ -26,6 +26,17 @@ namespace WebApp.Controllers
             _env = env;
         }
 
+        public ActionResult Search(string text, int? seriesID)
+        {
+            if (seriesID != null)
+            {
+                string newText = text.Substring(1, text.Length - 2);
+                var actors = _context.Characters.Where(a => a.Name.Contains(newText) && a.SeriesID == seriesID).Select(a => new {id = a.ID, text = a.Name}).ToList();
+                return Json(actors);
+            }
+            return Json(null);
+        }
+
         // GET: Characters
         public async Task<IActionResult> Index(int? seriesID)
         {

@@ -25,6 +25,12 @@ namespace WebApp.Controllers
             _context = context;
             _env = env;
         }
+        public ActionResult Search(string text)
+        {
+            string newText = text.Substring(1, text.Length - 2);
+            var actors = _context.Actors.Where(a => a.Name.Contains(newText)).Select(a => new {id = a.ID, text = a.Name}).ToList();
+            return Json(actors);
+        }
 
         // GET: Actors
         public async Task<IActionResult> Index()

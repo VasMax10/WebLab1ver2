@@ -27,12 +27,14 @@
             <input type="hidden" asp-for="ID" />
             <div class="form-group">
                 <label asp-for="ActorID" class="control-label"></label>
-                <select asp-for="ActorID" class="form-control" asp-items="ViewBag.ActorID"></select>
+                <br/>
+                <select style="width: -webkit-fill-available;" class="search-select form-control" asp-for="ActorID" asp-items="ViewBag.ActorID"></select>
                 <span asp-validation-for="ActorID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CharacterID" class="control-label"></label>
-                <select asp-for="CharacterID" class="form-control" asp-items="ViewBag.CharacterID"></select>
+                <br/>
+                <select style="width: -webkit-fill-available;" class="search-select form-control" asp-for="CharacterID" asp-items="ViewBag.CharacterID"></select>
                 <span asp-validation-for="CharacterID" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -55,6 +57,51 @@
 <div>
     <a asp-action="Index" asp-route-seriesID="@Model.Character.SeriesID">Back to List</a>
 </div>
+
+<script>
+    var $jsSelectActor = $(".search-select#ActorID");
+	$jsSelectActor.select2({
+		minimumInputLength: 2,
+        ajax: {
+            url: '/Actors/Search',
+            data: function (term) {
+                return {
+                    "text": JSON.stringify(term.term),
+                };
+            },
+            processResults: function (data) {
+                return {
+                    results: data
+				}
+  				
+            },
+			delay: 1000,
+			width: 'resolve'
+        }
+    });
+	var $jsSelectCharacter = $(".search-select#CharacterID");
+	$jsSelectCharacter.select2({
+		minimumInputLength: 2,
+        ajax: {
+            url: '/Characters/Search',
+            data: function (term) {
+                return {
+                    "text": JSON.stringify(term.term),
+					"seriesID" : JSON.stringify(@ViewBag.SeriesID)
+                };
+            },
+            processResults: function (data) {
+                return {
+                    results: data
+				}
+  				
+            },
+			delay: 1000,
+			width: 'resolve'
+        }
+    });
+</script>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
